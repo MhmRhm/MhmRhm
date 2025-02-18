@@ -1,16 +1,26 @@
-## Hi there 👋
+```cpp
+namespace life {
+bool terminated = false;
+template <typename Func, typename... Args>
+  requires requires(Func func, Args &&...args) {
+    { func(std::forward<Args>(args)...) } -> std::totally_ordered;
+  }
+void ageing(Func new_way, Args &&...args) {
+  extern Func my_way;
+  while (!terminated) {
+    if (new_way(std::forward<Args>(args)...) >
+        my_way(std::forward<Args>(args)...)) {
+      my_way = new_way;
+    }
+  }
+}
+} // namespace life
 
-<!--
-**MhmRhm/MhmRhm** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+/**
+ * For tutorial visit:
+ * https://mhmrhm.github.io/tutorials/
+ * 
+ * To connect visit:
+ * https://www.linkedin.com/in/mhmrhm/
+ */
+```
